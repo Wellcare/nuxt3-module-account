@@ -1,0 +1,98 @@
+{
+    "name": "@wellcare/nuxt3-module-chart",
+    "version": "1.0.12",
+    "description": "Nơi huyền thoại được sinh ra 🚀",
+    "keywords": [
+        "nuxt",
+        "module",
+        "nuxt-module"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/wellcare/nuxt3-module-chart.git",
+        "directory": "packages/nuxt3-module-chart"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com"
+    },
+    "license": "MIT",
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./dist/types.d.ts",
+            "import": "./dist/module.mjs",
+            "require": "./dist/module.cjs"
+        }
+    },
+    "main": "./dist/module.cjs",
+    "types": "./dist/types.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "dev:build": "cross-env NODE_OPTIONS='--no-warnings=ExperimentalWarning' && pnpm lint && nuxi build playground",
+        "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
+        "dev": "cross-env NODE_OPTIONS='--no-warnings=ExperimentalWarning' && pnpm lint && nuxi dev playground -o -p 3000 --host ",
+        "lint:all": "eslint .",
+        "lint:fix": "pnpm lint --fix",
+        "lint": "eslint .",
+        "prepack": "nuxt-module-build build",
+        "prepare": "nuxt-module-build prepare && nuxi prepare playground",
+        "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+        "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit",
+        "test": "vitest run"
+    },
+    "dependencies": {
+        "@nuxt/kit": "^3.13.2",
+        "@nuxtjs/color-mode": "^3.4.1",
+        "@vueuse/core": "^11.1.0",
+        "nuxt-jsonld": "^2.0.8",
+        "nuxt-marquee": "^1.0.4",
+        "primeicons": "^7.0.0",
+        "primevue": "^4.0.7",
+        "socket.io-client": "^4.8.0",
+        "tailwindcss-primeui": "^0.3.4",
+        "vega": "^5.30.0"
+    },
+    "devDependencies": {
+        "@jsdevtools/version-bump-prompt": "6.1.0",
+        "@nuxt/devtools": "latest",
+        "@nuxt/eslint-config": "0.5.7",
+        "@nuxt/image": "^1.8.0",
+        "@nuxt/module-builder": "^0.8.4",
+        "@nuxt/schema": "^3.13.2",
+        "@nuxt/test-utils": "^3.14.2",
+        "@nuxtjs/color-mode": "^3.4.2",
+        "@nuxtjs/google-fonts": "3.2.0",
+        "@nuxtjs/i18n": "^8.3.1",
+        "@nuxtjs/tailwindcss": "^6.12.1",
+        "@pinia/nuxt": "^0.5.4",
+        "@primevue/nuxt-module": "^4.1.0",
+        "@testing-library/vue": "8.0.3",
+        "@types/node": "latest",
+        "@vueuse/nuxt": "^11.1.0",
+        "@wellcare/muot-ui": "^0.3.5",
+        "@wellcare/nuxt3-module-data-layer": "^0.6.2",
+        "changelogen": "^0.5.7",
+        "cross-env": "7.0.3",
+        "dayjs-nuxt": "2.1.11",
+        "dotenv": "16.4.5",
+        "eslint": "^9.11.1",
+        "happy-dom": "14.11.0",
+        "husky": "9.0.11",
+        "istanbul-badges-readme": "1.8.5",
+        "jsdom": "24.0.0",
+        "nuxt": "^3.13.2",
+        "playwright-core": "1.43.1",
+        "postcss": "8.4.38",
+        "prettier-plugin-tailwindcss": "^0.6.6",
+        "typescript": "latest",
+        "vitest": "^2.1.1",
+        "vue-tsc": "^2.1.6"
+    },
+    "pnpm": {
+        "overrides": {
+            "vite": "^5.1.3"
+        }
+    }
+}
