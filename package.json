@@ -1,5 +1,5 @@
 {
-    "name": "@wellcare/nuxt3-module-chart",
+    "name": "@wellcare/nuxt3-module-account",
     "version": "1.0.12",
     "description": "Nơi huyền thoại được sinh ra 🚀",
     "keywords": [
@@ -9,8 +9,8 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/wellcare/nuxt3-module-chart.git",
-        "directory": "packages/nuxt3-module-chart"
+        "url": "git+https://github.com/wellcare/nuxt3-module-account.git",
+        "directory": "packages/nuxt3-module-account"
     },
     "publishConfig": {
         "registry": "https://npm.pkg.github.com"

@@ -190,7 +190,7 @@ export default defineNuxtModule<ModuleOptions>({
 
                 declare module '@nuxt/schema' {
                     interface NuxtConfig {
-                        'nuxt3-module-chart'?: types.ModuleOptions
+                        'nuxt3-module-account'?: types.ModuleOptions
                     }
                 }
 
