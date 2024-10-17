@@ -17,11 +17,11 @@ export default defineNuxtConfig({
     runtimeConfig,
 
     devtools: {
-      enabled: true,
-
-      timeline: {
         enabled: true,
-      },
+
+        timeline: {
+            enabled: true,
+        },
     },
 
     colorMode: {
@@ -32,6 +32,7 @@ export default defineNuxtConfig({
     css: ['~/assets/css/index.css', 'primeicons/primeicons.css'],
 
     modules: [
+        '@vee-validate/nuxt',
         '@wellcare/nuxt3-module-data-layer',
         '@wellcare/muot-ui',
         '@vueuse/nuxt',

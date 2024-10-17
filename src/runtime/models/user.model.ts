@@ -38,7 +38,7 @@ export interface Utm {
     medium: string
     source: string
 }
-export interface Relationships {
+export interface Relationship {
     avatar?: Avatar
     createdAt?: string
     dob?: string
@@ -90,7 +90,7 @@ export interface User {
     token?: string
     accessToken?: string
     refreshToken?: string
-    relationships?: Relationships[]
+    relationships?: Relationship[]
     isMember?: boolean
     membership?: any
     meta?: any

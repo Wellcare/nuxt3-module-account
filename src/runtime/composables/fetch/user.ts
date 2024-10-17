@@ -1,30 +1,24 @@
 import type { Ref } from '#imports'
 import { ref, useNuxtApp } from '#imports'
-import { USER_URL } from '../constants'
+
+import { USER_URL } from '../../constants'
+import type { Relationship, Response, Subscription, User } from '../../models'
 
 interface UserData {
-    userId: string
-    [key: string]: any
-}
-
-interface Relationship {
-    [key: string]: any
-}
-
-interface Subscription {
+    _id: string
     [key: string]: any
 }
 
 interface UseUserProfileReturn {
     loading: Ref<boolean>
     error: Ref<string | null>
-    createRelationship: (data: any) => Promise<Relationship | null>
-    deleteRelationship: (userId: string) => Promise<any | null>
-    updateUser: (data: UserData) => Promise<UserData | null>
-    getRelationship: (userId: string) => Promise<Relationship | null>
-    getUser: () => Promise<UserData | null>
-    getUserId: (data: any) => Promise<string | null>
-    getSubscriptions: () => Promise<Subscription[] | null>
+    createRelationship: (data: any) => Promise<Response<Relationship | null>>
+    deleteRelationship: (_id: string) => Promise<Response<any | null>>
+    updateUser: (data: UserData) => Promise<Response<User | null>>
+    getRelationship: (_id: string) => Promise<Response<Relationship | null>>
+    getUser: () => Promise<Response<User | null>>
+    getUserId: (data: { key: number }) => Promise<Response<string | null>>
+    getSubscriptions: () => Promise<Response<Subscription[] | null>>
 }
 
 export const useUserProfile = (): UseUserProfileReturn => {
@@ -49,7 +43,9 @@ export const useUserProfile = (): UseUserProfileReturn => {
         }
     }
 
-    const createRelationship = (data: any): Promise<Relationship | null> =>
+    const createRelationship = (
+        data: any,
+    ): Promise<Response<Relationship | null>> =>
         executeRequest(() =>
             $fetchWellcare(USER_URL.createRelationship(), {
                 method: 'POST',
@@ -58,31 +54,33 @@ export const useUserProfile = (): UseUserProfileReturn => {
             }),
         )
 
-    const deleteRelationship = (userId: string): Promise<any | null> =>
+    const deleteRelationship = (_id: string): Promise<any | null> =>
         executeRequest(() =>
-            $fetchWellcare(USER_URL.deleteRelationship(userId), {
+            $fetchWellcare(USER_URL.deleteRelationship(_id), {
                 method: 'DELETE',
                 timeout: TIMEOUT,
             }),
         )
 
-    const updateUser = (data: UserData): Promise<UserData | null> =>
+    const updateUser = (data: UserData): Promise<Response<User | null>> =>
         executeRequest(() =>
-            $fetchWellcare(USER_URL.updateUser(data.userId), {
+            $fetchWellcare(USER_URL.updateUser(data._id), {
                 method: 'PUT',
                 body: data,
                 timeout: TIMEOUT,
             }),
         )
 
-    const getRelationship = (userId: string): Promise<Relationship | null> =>
+    const getRelationship = (
+        _id: string,
+    ): Promise<Response<Relationship | null>> =>
         executeRequest(() =>
-            $fetchWellcare(USER_URL.getRelationship(userId), {
+            $fetchWellcare(USER_URL.getRelationship(_id), {
                 timeout: TIMEOUT,
             }),
         )
 
-    const getUser = (): Promise<UserData | null> =>
+    const getUser = (): Promise<Response<User | null>> =>
         executeRequest(() =>
             $fetchWellcare(USER_URL.getUser(), {
                 timeout: TIMEOUT,
@@ -92,14 +90,16 @@ export const useUserProfile = (): UseUserProfileReturn => {
             }),
         )
 
-    const getSubscriptions = (): Promise<Subscription[] | null> =>
+    const getSubscriptions = (): Promise<Response<Subscription[] | null>> =>
         executeRequest(() =>
             $fetchWellcare(USER_URL.subscriptions(), {
                 timeout: TIMEOUT,
             }),
         )
 
-    const getUserId = (data: any): Promise<string | null> =>
+    const getUserId = (data: {
+        key: number
+    }): Promise<Response<string | null>> =>
         executeRequest(() =>
             $fetchWellcare(USER_URL.getUserId(), {
                 method: 'POST',

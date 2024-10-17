@@ -1,73 +1,96 @@
 <script setup lang="ts">
 definePageMeta({
-    middleware: ['auth'],
+    middleware: 'auth',
 })
 
-const { user } = await useUserInfo({
-    scope: '_id',
-})
+const { upload, loading, error } = useUploadTemporary()
+const toast = useToast()
 
-const { upload, loading, progress } = useUpload({
-    user: user.value._id || '',
-    labels: `avatar:${user.value._id}`,
-    project: 'profile',
-})
+const file = ref<File | null>(null)
+const response = ref<any>(null)
 
-const error = ref<string | null>(null)
-const uploadedFile = ref<any>(null)
-
-const onFileSelect = async (event: any) => {
-    const file = event.files[0]
-    error.value = null
-    uploadedFile.value = null
-
-    try {
-        const response = await upload(file)
-        uploadedFile.value = response.results
-    } catch (err: any) {
-        error.value = err.message || 'An error occurred during upload'
-    }
+const handleFileUpload = (event: any) => {
+    file.value = event.files[0]
 }
 
-const formatFileSize = (bytes: number) => {
-    if (bytes === 0) return '0 Bytes'
-    const k = 1024
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
-    const i = Math.floor(Math.log(bytes) / Math.log(k))
-    return (
-        Number.parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
-    )
+const uploadFile = async () => {
+    if (!file.value) {
+        toast.add({
+            severity: 'warn',
+            summary: 'Warning',
+            detail: 'Please select a file first',
+            life: 3000,
+        })
+        return
+    }
+
+    const result = await upload({
+        key: Date.now(), // Replace with actual key if needed
+        formdata: file.value,
+    })
+
+    if (result) {
+        response.value = result as any
+        toast.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'File uploaded successfully',
+            life: 3000,
+        })
+    } else if (error.value) {
+        toast.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: error.value,
+            life: 3000,
+        })
+    }
 }
 </script>
 
 <template>
-    <div class="container mx-auto p-6">
-        <h1 class="mb-6 text-3xl font-bold">File Upload Test</h1>
+    <div>
+        <div class="container mx-auto p-4">
+            <h1 class="mb-4 text-2xl font-bold">Test Upload Temporary</h1>
 
-        <div class="mb-4">
-            <FileUpload
-                mode="basic"
-                :custom-upload="true"
-                accept="image/*"
-                :auto="true"
-                :disabled="loading"
-                @select="onFileSelect" />
+            <div class="mb-4">
+                <FileUpload
+                    mode="basic"
+                    :auto="false"
+                    accept="image/*"
+                    choose-label="Choose File"
+                    @select="handleFileUpload" />
+            </div>
+
+            <Button
+                :loading="loading"
+                label="Upload"
+                icon="pi pi-upload"
+                class="p-button-primary"
+                @click="uploadFile" />
+
+            <ProgressSpinner v-if="loading" class="mt-4" />
+
+            <div v-if="error" class="mt-4 rounded bg-red-100 p-4 text-red-700">
+                Error: {{ error }}
+            </div>
+
+            <div v-if="response" class="mt-4">
+                <h2 class="mb-2 text-xl font-semibold">Upload Response:</h2>
+                <div
+                    class="overflow-auto rounded bg-gray-900 p-4 dark:bg-gray-100">
+                    <pre class="text-sm text-white dark:text-black">{{
+                        JSON.stringify(response, null, 2)
+                    }}</pre>
+                </div>
+
+                <Image
+                    v-if="response?.url"
+                    :key="response?.url"
+                    :src="response?.url" />
+            </div>
         </div>
 
-        <div v-if="loading" class="mb-4">
-            <ProgressBar :value="progress" :show-value="true" class="h-6" />
-        </div>
-
-        <div v-if="error" class="mb-4 text-red-500">
-            {{ error }}
-        </div>
-
-        <div
-            v-if="uploadedFile"
-            class="mb-4 rounded border border-green-400 bg-green-100 px-4 py-3 text-green-700">
-            <p class="font-bold">File uploaded successfully!</p>
-            <p>Name: {{ uploadedFile.name }}</p>
-            <p>Size: {{ formatFileSize(uploadedFile.size) }}</p>
-        </div>
+        <Toast />
     </div>
 </template>
