@@ -1,24 +1,11 @@
-export const OBSERVATION_URL = {
-    getId: (obsId: string) => `/phr/observation/${obsId}`,
-
-    deleteId: (obsId: string) => `/phr/observation/${obsId}`,
-
-    updateId: (obsId: string) => `/phr/observation/${obsId}`,
-
-    searchAggregation: () => `/phr/observation/search-aggregation`,
-
-    create: () => `phr/observation`,
-
-    importCreate: () => `/phr/observation/import/create`,
-}
-
-export const VACCINATION_URL = {
-    history: (vaccineId: string): string =>
-        `/phr/vaccination/history/${vaccineId}`,
-
-    historyFindOrCreate: (): string =>
-        '/phr/vaccination/history/find-or-create',
-
-    schedulePatient: (userId: string): string =>
-        `/phr/vaccination/schedule/patient/${userId}`,
+export const USER_URL = {
+    createRelationship: (): string => `/user-management/user/relationship`,
+    deleteRelationship: (userId: string): string =>
+        `/user-management/relationship/user/${userId}`,
+    updateUser: (userId: string): string => `/api/user/${userId}`,
+    getRelationship: (userId: string): string =>
+        `/user-management/relationship/${userId}`,
+    getUser: (): string => '/user-management/user-info',
+    subscriptions: (): string => '/membership/member/subscriptions',
+    getUserId: (): string => `/identity/public/id`,
 }
