@@ -17,11 +17,11 @@ export default defineNuxtConfig({
     runtimeConfig,
 
     devtools: {
-      enabled: true,
-
-      timeline: {
         enabled: true,
-      },
+
+        timeline: {
+            enabled: true,
+        },
     },
 
     colorMode: {
@@ -32,23 +32,33 @@ export default defineNuxtConfig({
     css: ['~/assets/css/index.css', 'primeicons/primeicons.css'],
 
     modules: [
+        '@vee-validate/nuxt',
         '@wellcare/nuxt3-module-data-layer',
         '@wellcare/muot-ui',
         '@vueuse/nuxt',
-        'nuxt-jsonld',
         'dayjs-nuxt',
         '@nuxt/test-utils/module',
         ['@nuxtjs/google-fonts', googleFont],
         ['../src/module', module],
         '@nuxtjs/i18n',
-        'nuxt-marquee',
         '@primevue/nuxt-module',
         '@nuxtjs/tailwindcss',
         '@nuxtjs/color-mode',
-        '@nuxt/image',
         '@vueuse/nuxt',
         '@pinia/nuxt',
     ],
+
+    veeValidate: {
+        // disable or enable auto imports
+        autoImports: true,
+        // Use different names for components
+        componentNames: {
+            Form: 'VeeForm',
+            Field: 'VeeField',
+            FieldArray: 'VeeFieldArray',
+            ErrorMessage: 'VeeErrorMessage',
+        },
+    },
 
     i18n,
 

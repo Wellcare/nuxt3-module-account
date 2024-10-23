@@ -1,4 +1,4 @@
-# @wellcare/nuxt3-module-chart
+# @wellcare/nuxt3-module-account
 
 > Nơi huyền thoại được sinh ra 🚀
 
@@ -29,23 +29,23 @@ This is a starter kit for developing Nuxt 3 modules. It provides a basic structu
 
 1. Add the module to your Nuxt project:
     ```bash
-    pnpm add -D @wellcare/nuxt3-module-chart
+    pnpm add -D @wellcare/nuxt3-module-account
     ```
 2. Add the module to your `nuxt.config.ts`:
     ```js
     export default defineNuxtConfig({
-        modules: ['@wellcare/nuxt3-module-chart'],
+        modules: ['@wellcare/nuxt3-module-account'],
     })
     ```
 
 ## Configuration
 
-You can configure the module by adding a `nuxt3-module-chart` object in your `nuxt.config.ts`:
+You can configure the module by adding a `nuxt3-module-account` object in your `nuxt.config.ts`:
 
 ```js
 export default defineNuxtConfig({
-    modules: ['@wellcare/nuxt3-module-chart'],
-    'nuxt3-module-chart': {
+    modules: ['@wellcare/nuxt3-module-account'],
+    'nuxt3-module-account': {
         // Your options here
         prefix: 'custom',
         // ...

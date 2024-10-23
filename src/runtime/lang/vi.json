@@ -1,18 +1,34 @@
 {
-    "weight": "Cân nặng",
-    "height": "Chiều cao",
-    "bmi": "Chỉ số BMI",
-    "kg": "kg",
-    "cm": "cm",
-    "updated": "Cập nhật",
-    "submit": "Gửi",
-    "all-diseases": "Tất cả bệnh",
-    "add": "Thêm",
-    "status": "Trạng thái",
-    "vaccination": {
-        "not-vaccinated": "Chưa tiêm",
-        "doses-given": "Số mũi đã tiêm",
-        "last-vaccination-date": "Ngày tiêm cuối",
-        "not-updated": "Chưa cập nhật"
+    "common": {
+        "cancel": "Huỷ",
+        "required": "Bắt buộc"
+    },
+    "user-profile-form": {
+        "avatar": "Ảnh đại diện",
+        "field-avatar": "Ảnh đại diện",
+        "field-name": "Họ và tên",
+        "field-dob": "Ngày sinh",
+        "field-gender": "Giới tính",
+        "field-relationship": "Mối quan hệ với tôi",
+        "field-height": "Chiều cao",
+        "field-weight": "Cân nặng",
+        "required": "Bắt buộc",
+        "please-enter-fullname": "Nhập đầy đủ họ tên",
+        "choose-date-of-birth": "Chọn ngày sinh",
+        "relationship-with-user": "Quan hệ với tôi",
+        "fullname": "Họ tên",
+        "date-of-birth": "Ngày sinh",
+        "gender": "Giới tính",
+        "male": "Nam",
+        "female": "Nữ",
+        "child": "Con",
+        "parent": "Bố/mẹ",
+        "sibling": "Anh/chị/em",
+        "spouse": "Vợ/chồng",
+        "invalid-date-format": "Sai định dạng ngày sinh",
+        "enter-full-name": "Enter full name",
+        "select-gender": "Chọn giới tính",
+        "relationship": "Quan hệ với tôi",
+        "Select relationship": "Quan hệ với tôi"
     }
 }

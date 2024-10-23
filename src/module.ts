@@ -63,6 +63,7 @@ export default defineNuxtModule<ModuleOptions>({
         await installModule('dayjs-nuxt')
         await installModule('@primevue/nuxt-module')
         await installModule('@nuxtjs/i18n')
+        await installModule('@vee-validate/nuxt')
 
         // Config validation
         if (nuxt.options.dev || nuxt.options._start || nuxt.options._generate) {
@@ -190,7 +191,7 @@ export default defineNuxtModule<ModuleOptions>({
 
                 declare module '@nuxt/schema' {
                     interface NuxtConfig {
-                        'nuxt3-module-chart'?: types.ModuleOptions
+                        'nuxt3-module-account'?: types.ModuleOptions
                     }
                 }
 

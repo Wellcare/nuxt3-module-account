@@ -7,12 +7,12 @@ export interface BasePublicRuntimeConfig {
 declare module 'nuxt/schema' {
     interface RuntimeConfig {
         // Define properties specific to RuntimeConfig here
-        'nuxt3-module-chart': BaseRuntimeConfig
+        'nuxt3-module-account': BaseRuntimeConfig
     }
 
     interface PublicRuntimeConfig {
         // Define properties specific to PublicRuntimeConfig here
-        'nuxt3-module-chart': BasePublicRuntimeConfig
+        'nuxt3-module-account': BasePublicRuntimeConfig
     }
 }
 

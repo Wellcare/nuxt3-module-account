@@ -4,7 +4,7 @@
         <template #title>
             <h1
                 class="text-4xl font-bold uppercase text-gray-900 dark:text-white">
-                {{ $t('welcome') }} nuxt3-module-chart
+                {{ $t('welcome') }} nuxt3-module-account
             </h1>
         </template>
         <template #content>
