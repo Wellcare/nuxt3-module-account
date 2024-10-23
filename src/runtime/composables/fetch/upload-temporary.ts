@@ -13,6 +13,8 @@ interface UploadResult {
     fileName: string
     fileSize: number
     mimeType: string
+    _id: string
+    user: string
 }
 
 interface UseUploadTemporaryReturn {

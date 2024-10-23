@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref } from '#imports'
 
 interface Props {
     initialSrc?: string
@@ -58,6 +58,10 @@ function handleFile(file: File) {
     }
     reader.readAsDataURL(file)
 }
+
+defineExpose({
+    triggerFileInput,
+})
 </script>
 
 <template>

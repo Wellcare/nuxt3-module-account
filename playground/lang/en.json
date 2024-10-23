@@ -1,36 +1,34 @@
 {
-  "error": "Error message",
-  "warning": "Warning message",
-  "info": "Info message",
-  "success": "Success message",
-  "weight": "Weight",
-  "height": "Height",
-  "bmi": "BMI",
-  "kg": "kg",
-  "cm": "cm",
-  "person_height": "Height",
-  "person_weight": "Weight",
-  "person_head_circumference": "Head Circumference",
-  "person_bmi": "BMI",
-  "updated": "Updated",
-  "observationDate": "Observation Date",
-  "headCircumference": "Head Circumference",
-  "submit": "Submit",
-  "all-diseases": "All Diseases",
-  "add": "Add",
-  "status": "Status",
-  "diseases": {
-    "COVID-19": "COVID-19",
-    "Flu": "Flu"
+  "common": {
+    "cancel": "Cancel",
+    "required": "Required"
   },
-  "vaccines": {
-    "Pfizer": "Pfizer",
-    "Moderna": "Moderna"
-  },
-  "vaccination": {
-    "not-vaccinated": "Not vaccinated",
-    "doses-given": "Doses given",
-    "last-vaccination-date": "Last vaccination date",
-    "not-updated": "Not updated"
+  "user-profile-form": {
+    "avatar": "Avatar",
+    "field-avatar": "Avatar",
+    "field-name": "Name",
+    "field-email": "Email",
+    "field-dob": "Date of Birth",
+    "field-gender": "Gender",
+    "field-relationship": "Relationship",
+    "field-height": "Height",
+    "field-weight": "Weight",
+    "please-enter-fullname": "Please enter fullname",
+    "fullname": "Full Name",
+    "date-of-birth": "Date of birth",
+    "choose-date-of-birth": "Choose date of birth",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "relationship-with-user": "Relationship",
+    "child": "Child",
+    "parent": "Parent",
+    "sibling": "Sibling",
+    "spouse": "Spouse",
+    "invalid-date-format": "Invalid date format",
+    "enter-full-name": "Nhập đầy đủ họ và tên",
+    "select-gender": "Select gender",
+    "relationship": "Relationship",
+    "Select relationship": "Select relationship"
   }
 }

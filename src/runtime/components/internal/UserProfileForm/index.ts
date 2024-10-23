@@ -1,5 +1,4 @@
-import Avatar from './Avatar.vue'
-import Checker from './Checker.vue'
-import Form from './Form.vue'
-
-export { Avatar, Checker, Form }
+// internal/UserProfileForm/index.ts
+export { default as Avatar } from './Avatar.vue'
+export { default as Checker } from './Checker.vue'
+export { default as Form } from './Form.vue'

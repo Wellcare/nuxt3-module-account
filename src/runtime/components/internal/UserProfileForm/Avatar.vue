@@ -1,29 +1,19 @@
 <script setup lang="ts">
 import { computed, ref, useI18n } from '#imports'
+import type { ProfileForm } from '../../../models'
 
-import AvatarPreview from '../AvatarPreview.vue'
-
-interface Avatar {
-    url: string
-}
-
-interface ProfileForm {
-    avatar: Avatar
-    userId?: string
-    name?: string
-    file?: File
-}
+import AvatarPreview from '../../global/AvatarPreview.vue'
 
 interface Props {
     defaultData: ProfileForm
     isReadOnly?: boolean
-    requireAvatar?: boolean
+    isRequireAvatar?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
     defaultData: () => ({ avatar: { url: '' } }),
     isReadOnly: false,
-    requireAvatar: false,
+    isRequireAvatar: false,
 })
 
 const emit = defineEmits<{
@@ -34,12 +24,11 @@ const emit = defineEmits<{
 const { t } = useI18n()
 
 const urlBase64 = ref('')
-const isRequireAvatar = ref(false)
+const isValid = ref(false)
 const isRunning = ref(false)
 
 const form = computed(() => ({
     avatar: { url: props.defaultData.avatar?.url || '' },
-    userId: props.defaultData.userId,
     name: props.defaultData.name,
     file: props.defaultData.file,
 }))
@@ -47,9 +36,8 @@ const form = computed(() => ({
 const backgroundImage = computed(() => urlBase64.value || form.value.avatar.url)
 
 const checkAvatarRequirement = (file: File | undefined) => {
-    const isRequired = props.requireAvatar && !file
-    isRequireAvatar.value = isRequired
-    emit('on:require-avatar', isRequired)
+    isValid.value = props.isRequireAvatar && !file
+    emit('on:require-avatar', isValid.value)
 }
 
 const onFileSelected = (file: File) => {
@@ -64,11 +52,13 @@ const onFileSelected = (file: File) => {
     }
     reader.readAsDataURL(file)
 }
+
+defineExpose({ checkAvatarRequirement })
 </script>
 
 <template>
     <div
-        class="relative flex min-h-[180px] items-center justify-center overflow-hidden rounded-lg text-center shadow-md">
+        class="relative flex min-h-[180px] items-center justify-center overflow-hidden text-center">
         <transition name="fade">
             <img
                 v-if="backgroundImage"
@@ -78,17 +68,18 @@ const onFileSelected = (file: File) => {
                 class="absolute inset-0 h-full w-full object-cover blur-[10px] filter" />
         </transition>
         <div
-            class="absolute inset-0 z-10 flex flex-col items-center justify-center">
+            class="absolute inset-0 z-10 mb-6 flex flex-col items-center justify-center">
             <AvatarPreview
                 :initial-src="form.avatar.url"
                 :name="form.name"
                 @on:file-selected="onFileSelected" />
+
             <transition name="slide-y">
                 <span
-                    v-if="isRequireAvatar"
+                    v-if="isValid"
                     class="mt-2 text-sm font-medium text-red-500"
                     :class="{ 'animate-pulse': isRunning }">
-                    {{ t('require avatar') }}
+                    {{ t('common.required') }}
                 </span>
             </transition>
         </div>

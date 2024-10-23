@@ -1,37 +1,44 @@
 <script setup lang="ts">
-import type { PropType } from 'vue'
-import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
-import type { Relationship } from '../../../models'
+import type { PropType } from '#imports'
+import { computed, useI18n } from '#imports'
+
+import type { ProfileForm } from '../../../models'
 
 // Props
 const props = defineProps({
     initForm: {
-        type: Object as PropType<Relationship>,
-        default: () => ({}) as Relationship,
+        type: Object as PropType<ProfileForm>,
+        required: true,
     },
 })
 
 // i18n
 const { t } = useI18n()
 
+// Helper type guard
+function isKeyOfProfileForm(key: string): key is keyof ProfileForm {
+    return key in props.initForm
+}
+
 // Computed data
 const checkerFormData = computed(() => {
-    return Object.keys(props.initForm).reduce(
-        (acc, curr) => {
+    return Object.keys(props.initForm).reduce<
+        Array<{ label: string; value: boolean }>
+    >((acc, curr) => {
+        if (isKeyOfProfileForm(curr)) {
+            const formValue = props.initForm[curr]
             acc.push({
                 label: t(
-                    `field ${curr === 'avatar' || curr === 'file' ? 'avatar' : curr}`,
+                    `user-profile-form.field-${curr === 'avatar' || curr === 'file' ? 'avatar' : curr}`,
                 ),
                 value:
                     curr === 'avatar'
-                        ? !!props.initForm[curr]?.url
-                        : !!props.initForm[curr],
+                        ? !!(formValue as { url?: string })?.url
+                        : !!formValue,
             })
-            return acc
-        },
-        [] as { label: string; value: boolean }[],
-    )
+        }
+        return acc
+    }, [])
 })
 </script>
 
@@ -46,7 +53,7 @@ const checkerFormData = computed(() => {
                 :class="[
                     'pi',
                     item.value ? 'pi-check-circle' : 'pi-circle-off',
-                    item.value ? 'text-blue-500' : 'text-gray-300',
+                    item.value ? 'text-primary' : 'text-gray-300',
                     { 'icon-active': item.value },
                 ]"
                 style="font-size: 17px" />
