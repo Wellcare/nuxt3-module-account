@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, reactive, ref, useI18n } from '#imports'
+import Button from 'primevue/button';
+
 import type { ProfileForm } from '../../../models'
 import { Avatar, Checker, Form } from '../../internal/UserProfileForm'
 

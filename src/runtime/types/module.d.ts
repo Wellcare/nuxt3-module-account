@@ -16,7 +16,3 @@ declare module 'nuxt/schema' {
     }
 }
 
-export interface ModuleOptions {
-    // Options passed directly
-    prefix?: string
-}
