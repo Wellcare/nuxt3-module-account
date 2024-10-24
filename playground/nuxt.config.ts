@@ -16,20 +16,22 @@ export default defineNuxtConfig({
 
     runtimeConfig,
 
-    devtools: {
-        enabled: true,
+    app,
 
-        timeline: {
-            enabled: true,
-        },
-    },
+    nitro,
+
+    tailwindcss,
+
+    primevue,
+
+    vite,
+
+    i18n,
 
     colorMode: {
         classPrefix: 'p-',
         classSuffix: '',
     },
-
-    css: ['~/assets/css/index.css', 'primeicons/primeicons.css'],
 
     modules: [
         '@vee-validate/nuxt',
@@ -40,13 +42,14 @@ export default defineNuxtConfig({
         '@nuxt/test-utils/module',
         ['@nuxtjs/google-fonts', googleFont],
         ['../src/module', module],
-        '@nuxtjs/i18n',
         '@primevue/nuxt-module',
         '@nuxtjs/tailwindcss',
         '@nuxtjs/color-mode',
         '@vueuse/nuxt',
         '@pinia/nuxt',
+        '@nuxtjs/i18n',
     ],
+    css: ['~/assets/css/index.css', 'primeicons/primeicons.css'],
 
     veeValidate: {
         // disable or enable auto imports
@@ -60,17 +63,13 @@ export default defineNuxtConfig({
         },
     },
 
-    i18n,
+    devtools: {
+        enabled: true,
 
-    app,
-
-    nitro,
-
-    tailwindcss,
-
-    primevue,
-
-    vite,
+        timeline: {
+            enabled: true,
+        },
+    },
 
     compatibilityDate: '2024-09-25',
 })
