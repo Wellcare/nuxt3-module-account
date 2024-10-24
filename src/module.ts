@@ -38,19 +38,13 @@ interface ModuleConfigs {
 
 const getModuleConfigs = (resolve: Function): ModuleConfigs => ({
     '@vueuse/nuxt': {},
-    '@wellcare/nuxt3-module-data-layer': {
-        // Cấu hình cho data layer module
-        apiBaseUrl: process.env.API_BASE_URL || 'http://localhost:3000',
-        enableCache: true,
-    },
+    '@wellcare/nuxt3-module-data-layer': {},
     '@wellcare/muot-ui': {},
     '@pinia/nuxt': {},
     'dayjs-nuxt': {
-        plugins: ['relativeTime', 'localized-format'],
     },
     '@primevue/nuxt-module': {},
     '@nuxtjs/i18n': {
-        // Cấu hình cho i18n
         langDir: resolve('./runtime/lang'),
         locales: [
             {
