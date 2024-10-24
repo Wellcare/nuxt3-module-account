@@ -89,9 +89,6 @@ export default defineNuxtModule<ModuleOptions>({
                     Object.entries(moduleConfigs).map(
                         async ([moduleName, config]) => {
                             await installModule(moduleName, config)
-                            logger.success(
-                                `[${namespace}] Installed ${moduleName}`,
-                            )
                         },
                     ),
                 )
