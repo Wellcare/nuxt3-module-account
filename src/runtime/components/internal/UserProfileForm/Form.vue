@@ -227,7 +227,9 @@ defineExpose({
                     :view="dobPicker"
                     :min-date="minDate"
                     :max-date="maxDate"
-                    :placeholder="t(`Enter ${dobPicker} of birth`)"
+                    :placeholder="
+                        t(`user-profile-form.enter-${dobPicker}-of-birth`)
+                    "
                     :date-format="dobPicker === 'date' ? 'dd/mm/yy' : 'yy'"
                     @update:model-value="(v) => updateForm('dob', v)" />
             </div>

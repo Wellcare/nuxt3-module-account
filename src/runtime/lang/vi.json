@@ -26,9 +26,11 @@
     "sibling": "Anh/chị/em",
     "spouse": "Vợ/chồng",
     "invalid-date-format": "Sai định dạng ngày sinh",
-    "enter-full-name": "Enter full name",
+    "enter-full-name": "Nhập đầy đủ họ và tên",
     "select-gender": "Chọn giới tính",
     "relationship": "Quan hệ với tôi",
-    "Select relationship": "Quan hệ với tôi"
+    "Select relationship": "Quan hệ với tôi",
+    "enter-date-of-birth": "Nhập ngày sinh",
+    "enter-year-of-birth": "Nhập năm sinh"
   }
 }
