@@ -1,15 +1,11 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, reactive, ref, useI18n } from '#imports'
-import Button from 'primevue/button';
+import Button from 'primevue/button'
 
 import type { ProfileForm } from '../../../models'
 import { Avatar, Checker, Form } from '../../internal/UserProfileForm'
 
 // Define interfaces for props
-interface Avatar {
-    url?: string
-}
-
 type ProfileFormKey = keyof ProfileForm
 
 // Define the props interface
@@ -24,6 +20,7 @@ interface Props {
     relationships?: any[]
     minDate?: Date
     maxDate?: Date
+    isHiddenSubmit?: boolean
 }
 
 // Use withDefaults
@@ -38,6 +35,7 @@ const props = withDefaults(defineProps<Props>(), {
     relationships: () => [],
     minDate: undefined,
     maxDate: undefined,
+    isHiddenSubmit: false,
 })
 
 // Define emits
@@ -170,6 +168,10 @@ onMounted(() => {
         }
     })
 })
+
+defineExpose({
+    submit,
+})
 </script>
 
 <template>
@@ -200,7 +202,7 @@ onMounted(() => {
         </div>
 
         <footer
-            v-if="!isReadOnly"
+            v-if="!isReadOnly && !isHiddenSubmit"
             class="fixed bottom-0 left-0 right-0 bg-white p-4 dark:bg-slate-800">
             <Button class="w-full" @click="submit">
                 {{ t(textBtnSubmit) }}

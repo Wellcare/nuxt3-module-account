@@ -36,27 +36,14 @@ interface ModuleConfigs {
     [key: string]: any
 }
 
-const getModuleConfigs = (resolve: Function): ModuleConfigs => ({
+const getModuleConfigs = (_resolve: Function): ModuleConfigs => ({
     '@vueuse/nuxt': {},
     '@wellcare/nuxt3-module-data-layer': {},
     '@wellcare/muot-ui': {},
     '@pinia/nuxt': {},
-    'dayjs-nuxt': {
-    },
+    'dayjs-nuxt': {},
     '@primevue/nuxt-module': {},
-    '@nuxtjs/i18n': {
-        langDir: resolve('./runtime/lang'),
-        locales: [
-            {
-                code: 'en',
-                file: resolve('./runtime/lang/en.json'),
-            },
-            {
-                code: 'vi',
-                file: resolve('./runtime/lang/vi.json'),
-            },
-        ],
-    },
+    '@nuxtjs/i18n': {},
     '@vee-validate/nuxt': {},
 })
 
@@ -185,6 +172,22 @@ export default defineNuxtModule<ModuleOptions>({
                 },
             )
         }
+
+        nuxt.hook('i18n:registerModule', (register) => {
+            register({
+                langDir: resolve('./runtime/lang'),
+                locales: [
+                    {
+                        code: 'en',
+                        file: resolve('./runtime/lang/en.json'),
+                    },
+                    {
+                        code: 'vi',
+                        file: resolve('./runtime/lang/vi.json'),
+                    },
+                ],
+            })
+        })
 
         try {
             await installModules()

@@ -26,9 +26,11 @@
     "sibling": "Sibling",
     "spouse": "Spouse",
     "invalid-date-format": "Invalid date format",
-    "enter-full-name": "Nhập đầy đủ họ và tên",
+    "enter-full-name": "Enter full name",
     "select-gender": "Select gender",
     "relationship": "Relationship",
-    "Select relationship": "Select relationship"
+    "select-relationship": "Select relationship",
+    "enter-date-of-birth": "Enter date of birth",
+    "enter-year-of-birth": "Enter year of birth"
   }
 }
