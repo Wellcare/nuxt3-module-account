@@ -135,7 +135,7 @@ const validDeep = async () => {
     isValid.value = isValidAvatarDeep && isValidFormDeep
 }
 
-const submit = async () => {
+const submit = async (): Promise<boolean> => {
     const isAvatarRq = await validAvatar()
     const isForm = await validateForm()
     isValid.value = isAvatarRq && isForm
@@ -143,6 +143,8 @@ const submit = async () => {
     if (isValid.value) {
         emit('on:submit', initForm)
     }
+
+    return isValid.value
 }
 
 const onChangeAvatar = (val: File) => {
